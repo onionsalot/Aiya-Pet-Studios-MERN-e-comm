@@ -29,6 +29,8 @@ app.listen(port, function () {
 //api routes will go here
 // app.use('/api/users', require('./routes/api/users'))
 app.use('/api/users', require('./routes/api/users'));
+app.use('/api/items', require('./routes/api/items'))
+app.use('/api/categories', require('./routes/api/categories'))
 
 // The following "catch all" route (note the *) is necessary
 app.get('/*', function (req, res) {

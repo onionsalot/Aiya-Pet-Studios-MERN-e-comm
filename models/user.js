@@ -14,12 +14,21 @@ const userSchema = new Schema(
 			lowercase: true,
 			required: true,
 		},
+		address: {
+			type: String,
+			required: true,
+		},
 		password: {
 			type: String,
 			trim: true,
 			minLength: 3,
 			required: true,
 		},
+		acctlvl: {
+			type: Number,
+			default: 1,
+			max: 4,
+		}
 	},
 	{
 		timestamps: true,
