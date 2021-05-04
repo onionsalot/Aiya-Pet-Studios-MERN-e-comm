@@ -5,3 +5,4 @@ export function getAll() {
     console.log('API HIT // => getAll()')
     return sendRequest(BASE_URL)
 }
+

@@ -10,3 +10,8 @@ export function create(item) {
     console.log('API HIT // => create()')
     return sendRequest(BASE_URL, "POST", item)
 }
+
+export function deleteOne(deletedItemID) {
+    console.log('API HIT // => deleteOne()')
+    return sendRequest(`${BASE_URL}/${deletedItemID}`, "DELETE")
+}

@@ -9,5 +9,6 @@ router.get('/', itemsCtrl.index)
 
 // POST api.items
 router.post('/', itemsCtrl.create)
+router.delete('/:id', itemsCtrl.delete)
 
 module.exports = router;
