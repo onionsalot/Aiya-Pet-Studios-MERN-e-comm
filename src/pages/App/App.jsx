@@ -4,7 +4,7 @@ import { getUser } from '../../utilities/users-service';
 import AuthPage from '../AuthPage/AuthPage';
 import NewItemPage from '../UserAdmin/NewItemPage/NewItemPage';
 import HomepageAdmin from '../UserAdmin/HomepageAdmin/HomepageAdmin';
-import ItemDetailsPage from '../UserAdmin/ItemDetailsPage/ItemDetailsPage'
+import ItemDetailsPage from '../ItemDetailsPage/ItemDetailsPage'
 import NavBar from '../../components/NavBar/NavBar';
 import UpdateItemPage from '../UserAdmin/UpdateItemPage/UpdateItemPage';
 import RouteGuard from '../../components/RouteGuard/RouteGuard'
@@ -19,6 +19,7 @@ export default function App() {
 	const [user, setUser] = useState(getUser());
 	const [showItems, setShowItems] = useState([]);
 	const [showCategories, setShowCategories] = useState([]);
+	const [currentCategory, setCurrentCategory] = useState(" ");
 	const history = useHistory();
 	const location = useLocation();
 
@@ -31,7 +32,6 @@ export default function App() {
 			history.push('/admin');
 		} else {
 			history.push('/');
-
 		}
 	}, [showItems, history])
 	useEffect(() => {
@@ -48,6 +48,13 @@ export default function App() {
 		}
 		getCategories();
 	}, [])
+	useEffect(() => {
+		async function changeCategories() {
+			console.log('changed to =>', currentCategory)
+
+		}
+		changeCategories()
+	}, [currentCategory])
 
 	function handleAddItem(newItem) {
 		setShowItems([...showItems, newItem])
@@ -74,17 +81,17 @@ export default function App() {
 						<Route path='/admin/new'>
 							<NewItemPage handleAddItem={handleAddItem} showCategories={showCategories}/>
 						</Route>
-						<Route exact path='/admin/item/:id'>
-							<ItemDetailsPage/>
-						</Route>
 						<Route exact path='/admin/edit'>
 							<UpdateItemPage handleUpdate={handleUpdate} showCategories={showCategories}/>
 						</Route>
 						<Route path='/admin'>
 							<HomepageAdmin showItems={showItems} handleDelete={handleDelete}/>
 						</Route>
+						<Route exact path='/item/:id'>
+							<ItemDetailsPage/>
+						</Route>
 						<Route exact path='/'>
-							<ItemListPage />
+							<ItemListPage showItems={showItems} showCategories={showCategories} currentCategory={currentCategory} setCurrentCategory={setCurrentCategory}/>
 						</Route>
 						<Redirect to='/' />
 					</Switch>

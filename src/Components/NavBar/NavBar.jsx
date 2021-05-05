@@ -12,9 +12,9 @@ export default function NavBar({ user, setUser }) {
 
 	return (
 		<nav>
-			<Link to='/admin'>Home Page</Link>
+			<Link to='/admin'>Admin Home</Link>
 			&nbsp; | &nbsp;
-			<Link to='/admin/new'>Add Item</Link>
+			<Link to='/'>User Home</Link>
 			&nbsp; | &nbsp;
 			<span>{user.name}</span>
 			&nbsp; | &nbsp;
@@ -23,6 +23,11 @@ export default function NavBar({ user, setUser }) {
 			<Link to='' onClick={handleLogOut}>
 				Log Out
 			</Link>
+			&nbsp; | &nbsp;
+			<Link to=''>
+				Cart (0)
+			</Link>
+
 		</nav>
 	);
 }

@@ -1,13 +1,16 @@
-import { NativeError } from 'mongoose';
 import React from 'react';
-import { Link } from 'react-router-dom';
-import * as userService from '../../utilities/users-service';
+import './CategoryBar.css';
 
-export default function CategoryBar({ showCategory }) {
+
+export default function CategoryBar({ showCategories , currentCategory, setCurrentCategory}) {
 
 	return (
-		<nav>
-			ITEM <br/>
-		</nav>
+		<ul>
+			{showCategories.map((c, idx) => (
+				<li 
+				className={c.name === currentCategory ? 'active' : ''}
+				onClick={() => setCurrentCategory(c.name)}>{c.name}</li>
+			))}
+		</ul>
 	);
 }
