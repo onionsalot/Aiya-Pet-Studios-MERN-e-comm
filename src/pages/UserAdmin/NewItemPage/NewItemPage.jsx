@@ -1,5 +1,5 @@
 import { Component, useState } from "react";
-import * as itemsAPI from "../../utilities/items-api";
+import * as itemsAPI from "../../../utilities/items-api";
 
 export default function NewItemPage({handleAddItem, showCategories}) {
   const categoryList = showCategories.map(item =>

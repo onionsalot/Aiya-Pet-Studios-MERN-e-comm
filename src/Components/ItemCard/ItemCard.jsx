@@ -16,7 +16,7 @@ export default function ItemCard({ item, handleDelete}) {
           <button onClick={() => handleDelete(item._id)}>DELETE</button><br />
           <Link to={
             {
-              pathname: `/item/${item._id}`,
+              pathname: `/admin/item/${item._id}`,
               state: {
                 item:{item}
               }
@@ -25,7 +25,7 @@ export default function ItemCard({ item, handleDelete}) {
 
           <Link to={
             {
-              pathname: '/edit',
+              pathname: '/admin/edit',
               state: { item }
             }
           }>UPDATE</Link><br />

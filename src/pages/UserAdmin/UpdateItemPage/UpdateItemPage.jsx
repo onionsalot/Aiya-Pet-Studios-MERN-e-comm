@@ -1,5 +1,5 @@
 import { Component, useState } from "react";
-import * as itemsAPI from "../../utilities/items-api";
+import * as itemsAPI from "../../../utilities/items-api";
 import { useLocation } from "react-router";
 
 export default function UpdateItemPage({ handleUpdate, showCategories }) {

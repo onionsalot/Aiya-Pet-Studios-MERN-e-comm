@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import * as usersService from '../../utilities/users-service';
 
-export default function LogIn({ setUser }) {
+export default function LogIn({ setUser , setIsAdmin}) {
 	const [credentials, setCredentials] = useState({
 		email: '',
 		password: '',
@@ -22,6 +22,9 @@ export default function LogIn({ setUser }) {
 			// payload of the JSON Web Token (JWT)
 			const user = await usersService.login(credentials);
 			setUser(user);
+			if(user.acctlvl===4) {
+				setIsAdmin(true)
+			} else { setIsAdmin(false)}
 		} catch {
 			setError('Log In Failed - Try Again');
 		}

@@ -1,25 +1,38 @@
 import { useEffect, useState } from 'react';
-import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import AuthPage from '../AuthPage/AuthPage';
-import NewItemPage from '../NewItemPage/NewItemPage';
-import HomePage from '../HomePage/HomePage';
-import ItemDetailsPage from '../ItemDetailsPage/ItemDetailsPage'
+import NewItemPage from '../UserAdmin/NewItemPage/NewItemPage';
+import HomepageAdmin from '../UserAdmin/HomepageAdmin/HomepageAdmin';
+import ItemDetailsPage from '../UserAdmin/ItemDetailsPage/ItemDetailsPage'
 import NavBar from '../../components/NavBar/NavBar';
+import UpdateItemPage from '../UserAdmin/UpdateItemPage/UpdateItemPage';
+import RouteGuard from '../../components/RouteGuard/RouteGuard'
 import * as itemsAPI from '../../utilities/items-api'
 import * as categoriesAPI from '../../utilities/categories-api'
 
 import './App.css';
-import UpdateItemPage from '../UpdateItemPage/UpdateItemPage';
+import ItemListPage from '../ItemListPage/ItemListPage';
 
 export default function App() {
+	const [isAdmin, setIsAdmin] = useState(false)
 	const [user, setUser] = useState(getUser());
 	const [showItems, setShowItems] = useState([]);
 	const [showCategories, setShowCategories] = useState([]);
 	const history = useHistory();
+	const location = useLocation();
+
+	const currentUrl = String(location.pathname);
 
 	useEffect(() => {
-		history.push('/');
+		console.log('USE LOCATION IS =>', currentUrl)
+		if (currentUrl.includes('admin')) {
+			console.log('contains admin')
+			history.push('/admin');
+		} else {
+			history.push('/');
+
+		}
 	}, [showItems, history])
 	useEffect(() => {
 		async function getItems() {
@@ -58,23 +71,26 @@ export default function App() {
 				<>
 					<NavBar user={user} setUser={setUser} />
 					<Switch>
-						<Route path='/new'>
+						<Route path='/admin/new'>
 							<NewItemPage handleAddItem={handleAddItem} showCategories={showCategories}/>
 						</Route>
-						<Route exact path='/item/:id'>
+						<Route exact path='/admin/item/:id'>
 							<ItemDetailsPage/>
 						</Route>
-						<Route exact path='/edit'>
+						<Route exact path='/admin/edit'>
 							<UpdateItemPage handleUpdate={handleUpdate} showCategories={showCategories}/>
 						</Route>
-						<Route path='/'>
-							<HomePage showItems={showItems} handleDelete={handleDelete}/>
+						<Route path='/admin'>
+							<HomepageAdmin showItems={showItems} handleDelete={handleDelete}/>
+						</Route>
+						<Route exact path='/'>
+							<ItemListPage />
 						</Route>
 						<Redirect to='/' />
 					</Switch>
 				</>
 			) : (
-				<AuthPage setUser={setUser} />
+				<AuthPage setUser={setUser} setIsAdmin={setIsAdmin}/>
 			)}
 		</main>
 	);
