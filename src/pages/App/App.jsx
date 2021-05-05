@@ -7,7 +7,7 @@ import HomepageAdmin from '../UserAdmin/HomepageAdmin/HomepageAdmin';
 import ItemDetailsPage from '../ItemDetailsPage/ItemDetailsPage'
 //import NavBar from '../../components/NavBar/NavBar';
 import UpdateItemPage from '../UserAdmin/UpdateItemPage/UpdateItemPage';
-import RouteGuard from '../../components/RouteGuard/RouteGuard'
+//import RouteGuard from '../../components/RouteGuard/RouteGuard'
 import * as itemsAPI from '../../utilities/items-api'
 import * as categoriesAPI from '../../utilities/categories-api'
 
