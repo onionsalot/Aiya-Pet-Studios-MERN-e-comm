@@ -5,9 +5,9 @@ import AuthPage from '../AuthPage/AuthPage';
 import NewItemPage from '../UserAdmin/NewItemPage/NewItemPage';
 import HomepageAdmin from '../UserAdmin/HomepageAdmin/HomepageAdmin';
 import ItemDetailsPage from '../ItemDetailsPage/ItemDetailsPage'
-//import NavBar from '../../components/NavBar/NavBar';
+import NavBar from '../../Components/NavBar/NavBar';
 import UpdateItemPage from '../UserAdmin/UpdateItemPage/UpdateItemPage';
-//import RouteGuard from '../../components/RouteGuard/RouteGuard'
+import RouteGuard from '../../Components/RouteGuard/RouteGuard'
 import * as itemsAPI from '../../utilities/items-api'
 import * as categoriesAPI from '../../utilities/categories-api'
 
@@ -76,7 +76,7 @@ export default function App() {
 		<main className='App'>
 			{user ? (
 				<>
-					{/* <NavBar user={user} setUser={setUser} /> */}
+					<NavBar user={user} setUser={setUser} />
 					<Switch>
 						<Route path='/admin/new'>
 							<NewItemPage handleAddItem={handleAddItem} showCategories={showCategories}/>

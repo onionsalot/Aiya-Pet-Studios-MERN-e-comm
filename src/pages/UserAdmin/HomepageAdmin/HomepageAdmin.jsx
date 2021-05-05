@@ -1,6 +1,6 @@
 import React from 'react';
 import * as usersService from '../../../utilities/users-service';
-import ItemTable from '../../../components/ItemTable/ItemTable'
+import ItemTable from '../../../Components/ItemTable/ItemTable'
 import { Link } from 'react-router-dom'
 import plusIcon from '../../../pictures/plus.png'
 

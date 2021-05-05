@@ -1,6 +1,6 @@
 import React from 'react';
-import ItemCard from '../../components/ItemCard/ItemCard'
-import CategoryBar from '../../components/CategoryBar/CategoryBar'
+import ItemCard from '../../Components/ItemCard/ItemCard'
+import CategoryBar from '../../Components/CategoryBar/CategoryBar'
 import './ItemListPage.css'
 
 export default function ItemListPage({showItems, showCategories, currentCategory, setCurrentCategory}) {
