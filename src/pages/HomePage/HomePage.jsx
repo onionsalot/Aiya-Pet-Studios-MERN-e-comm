@@ -2,9 +2,9 @@ import React from 'react';
 import * as usersService from '../../utilities/users-service';
 import ItemCard from '../../components/ItemCard/ItemCard'
 
-export default function HomePage({showItems, handleDelete, handleUpdate}) {
+export default function HomePage({showItems, handleDelete}) {
 	const items = showItems.map(item =>
-		<ItemCard item={ item } handleDelete={ handleDelete } handleUpdate={ handleUpdate } />)
+		<ItemCard item={ item } handleDelete={ handleDelete } />)
 	
 
 	return (

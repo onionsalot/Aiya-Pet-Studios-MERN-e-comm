@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function ItemCard({ item, handleDelete, handleUpdate }) {
+export default function ItemCard({ item, handleDelete}) {
 
 
   return (
@@ -12,9 +13,22 @@ export default function ItemCard({ item, handleDelete, handleUpdate }) {
         { item.description} <br />
         { item.tags} <br />
         { item._id}
-          <button onClick={() => handleDelete(item._id)}>DELETE</button>
+          <button onClick={() => handleDelete(item._id)}>DELETE</button><br />
+          <Link to={
+            {
+              pathname: `/item/${item._id}`,
+              state: {
+                item:{item}
+              }
+            }
+          }>DETAILS</Link><br />
 
-        
+          <Link to={
+            {
+              pathname: '/edit',
+              state: { item }
+            }
+          }>UPDATE</Link><br />
         <hr />
     </div>
   )

@@ -20,3 +20,8 @@ export function update(updatedItem) {
     console.log('API HIT // => update()')
     return sendRequest(`${BASE_URL}/${updatedItem._id}`, "PUT", updatedItem)
 }
+
+export function getOne(itemID) {
+    console.log('API HIT // => getOne()')
+    return sendRequest(`${BASE_URL}/${itemID}`)
+}
