@@ -4,7 +4,8 @@ module.exports={
     index,
     create,
     delete: deleteOne,
-    update
+    update,
+    show
 }
 
 async function index(req, res, next) {
@@ -20,5 +21,10 @@ async function deleteOne(req, res, next) {
     res.status(200).json(deletedItemID)
 }
 async function update(req, res, next) {
-
+    const updatedItem = await Item.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    res.status(200).json(updatedItem)
+}
+async function show(req, res, next) {
+    const item = await Item.findById(req.params.id)
+    res.status(200).json(item)
 }

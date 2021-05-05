@@ -15,3 +15,8 @@ export function deleteOne(deletedItemID) {
     console.log('API HIT // => deleteOne()')
     return sendRequest(`${BASE_URL}/${deletedItemID}`, "DELETE")
 }
+
+export function update(updatedItem) {
+    console.log('API HIT // => update()')
+    return sendRequest(`${BASE_URL}/${updatedItem._id}`, "PUT", updatedItem)
+}

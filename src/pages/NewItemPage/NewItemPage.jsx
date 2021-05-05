@@ -2,24 +2,24 @@ import { Component, useState } from "react";
 import * as itemsAPI from "../../utilities/items-api";
 
 export default function NewItemPage({handleAddItem, showCategories}) {
+  const categoryList = showCategories.map(item =>
+    <option value={item.name}>{item.name}</option>)
   const [item, setItem] = useState({
     name: "",
-    category: "",
+    category: `${showCategories[0].name}`,
     quantity: "",
     price: "",
     description: "",
     tags: "",
     buyable: "buyable",
   });
-  const categoryList = showCategories.map(item =>
-		<option value={item.name}>{item.name}</option>)
 
   async function handleSubmit(e) {
     e.preventDefault();
     console.log(item)
     const newItem = await itemsAPI.create(item)
     console.log(newItem)
-    handleAddItem(item)
+    handleAddItem(newItem)
   }
   function handleChange(e) {
     // console.log(`${[e.target.name]}: ${e.target.value}`)

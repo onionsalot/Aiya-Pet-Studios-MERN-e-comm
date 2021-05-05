@@ -1,7 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 
-export default function ItemCard({ item, handleDelete }) {
+export default function ItemCard({ item, handleDelete, handleUpdate }) {
 
 
   return (
@@ -12,7 +11,10 @@ export default function ItemCard({ item, handleDelete }) {
         { item.price} <br />
         { item.description} <br />
         { item.tags} <br />
+        { item._id}
           <button onClick={() => handleDelete(item._id)}>DELETE</button>
+
+        
         <hr />
     </div>
   )

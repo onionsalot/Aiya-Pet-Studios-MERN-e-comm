@@ -42,6 +42,10 @@ export default function App() {
 		await itemsAPI.deleteOne(deletedItemID);
 		setShowItems(showItems.filter(i => i._id !== deletedItemID))
 	}
+	
+	async function handleUpdate(updatedItem) {
+		
+	}
 
 	return (
 		<main className='App'>
@@ -53,7 +57,7 @@ export default function App() {
 							<NewItemPage handleAddItem={handleAddItem} showCategories={showCategories}/>
 						</Route>
 						<Route path='/'>
-							<HomePage showItems={showItems} handleDelete={handleDelete}/>
+							<HomePage showItems={showItems} handleDelete={handleDelete} handleDelete={handleDelete}/>
 						</Route>
 						<Redirect to='/' />
 					</Switch>
