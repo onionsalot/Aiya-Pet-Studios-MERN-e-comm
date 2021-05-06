@@ -7,6 +7,7 @@ router.get('/:uid', cartsCtrl.index);
 router.post('/', cartsCtrl.create);
 router.delete('/:cid/:iid', cartsCtrl.delete);
 router.put('/:id', cartsCtrl.updateItem);
+router.put('/:cid/:iid', cartsCtrl.updateQuantity)
 
 
 module.exports = router;

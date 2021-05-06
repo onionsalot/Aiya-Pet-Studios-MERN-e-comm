@@ -6,12 +6,7 @@ import * as cartsAPI from "../../utilities/carts-api"
 
 export default function ItemCard({ item, handleAddToCart, cartId}) {
   const [show, setShow] = useState(false);
-  const [addItem, setAddItem] = useState({
-    itemId: item._id,
-    name: item.name,
-    quantity: 5,
-    price: item.price
-  })
+
   //const activeCart = allCarts.filter((e) => e.paid === false)
   console.log('ALL CARTS',cartId)
   const handleClose = () => setShow(false);
@@ -19,8 +14,14 @@ export default function ItemCard({ item, handleAddToCart, cartId}) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(`showCartId=> ${cartId} and addItem=> ${addItem}`)
-    const newItem = await cartsAPI.updateItem(cartId._id, addItem );
+    const itemToAdd = {
+      itemId: e.target.itemId.value,
+      name: e.target.name.value,
+      price: e.target.price.value,
+      quantity: e.target.quantity.value,
+  }
+    console.log(`showCartId=> ${cartId} and addItem=> ${itemToAdd.name}`)
+    const newItem = await cartsAPI.updateItem(cartId._id, itemToAdd );
     console.log(newItem)
     handleAddToCart(newItem)
   }
@@ -62,14 +63,31 @@ export default function ItemCard({ item, handleAddToCart, cartId}) {
         { item.description} <br />
         { item.tags} <br />
         { item._id}<br />
-        <form autoComplete="off" onSubmit={handleSubmit}>
-        <input
-          type="hidden"
-          name="quantity"
-          value= "5"
-        />
-        <button type='submit' >Add To Cart</button>
-          </form>
+
+
+          <form autoComplete="off" onSubmit={handleSubmit}>
+                    <input
+                    type="hidden"
+                    name="itemId"
+                    value={item._id}>
+                    </input>
+                <input
+                    type="hidden"
+                    name="name"
+                    value={item.name}>
+                    </input>
+                    <input
+                    type="hidden"
+                    name="price"
+                    value={item.price}>
+                    </input>
+                    <input
+                    type="number"
+                    name="quantity"
+                    defaultValue="1">
+                    </input>
+                    <button type="submit">submit</button>
+                </form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

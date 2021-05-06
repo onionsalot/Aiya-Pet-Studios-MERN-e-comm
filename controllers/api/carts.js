@@ -6,6 +6,7 @@ module.exports={
     create,
     delete: deleteItem,
     updateItem,
+    updateQuantity
 }
 
 async function index(req, res, next) {
@@ -36,6 +37,23 @@ async function updateItem(req, res, next) {
     const result = await Cart.findById(req.params.id);
     result.items.push(req.body)
     await result.save()
+    console.log('successfully added item! current cart is', result)
+    res.status(200).json(result)
+}
+
+async function updateQuantity(req, res, next) {
+    console.log('addItem To Cart initiated....' + req.params.cid + req.body)
+    // const addItem = await Cart.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    const result = await Cart.updateOne(
+        {
+            _id: req.params.cid, 
+            "items._id": req.params.iid
+        }, 
+        { $set: {
+            "items.$.quantity" : req.body.quantity
+        }}
+        )
+
     console.log('successfully added item! current cart is', result)
     res.status(200).json(result)
 }

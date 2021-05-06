@@ -6,7 +6,6 @@ import * as itemsAPI from "../../utilities/items-api";
 
 export default function ItemDetailsPage() {
     const { id } = useParams();
-    console.log(`parems is currently => ${id}`)
     const history = useHistory();
 
   const [showItem, setShowItem] = useState([]);
