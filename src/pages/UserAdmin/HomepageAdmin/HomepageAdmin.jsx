@@ -1,31 +1,40 @@
-import React from 'react';
-import * as usersService from '../../../utilities/users-service';
-import ItemTable from '../../../Components/ItemTable/ItemTable'
-import { Link } from 'react-router-dom'
-import plusIcon from '../../../pictures/plus.png'
+import React from "react";
+import * as usersService from "../../../utilities/users-service";
+import ItemTable from "../../../Components/ItemTable/ItemTable";
+import { Link } from "react-router-dom";
+import plusIcon from "../../../pictures/plus.png";
+import AdminMenu from "../../../Components/AdminMenu/AdminMenu";
+import "./HomepageAdmin.css";
 
-export default function HomePage({showItems, handleDelete}) {
-	const items = showItems.map(item =>
-		<tr><ItemTable item={ item } handleDelete={ handleDelete } /></tr>)
-	
+export default function HomepageAdmin({ showItems, handleDelete }) {
+  const items = showItems.map((item) => (
+    <tr>
+      <ItemTable item={item} handleDelete={handleDelete} />
+    </tr>
+  ));
 
-	return (
-		<>
-			<h1>Admin CP</h1>
-			<table>
-				<tr>
-					<th>ITEM ID</th>
-					<th>NAME</th>
-					<th>CATEGORY</th>
-					<th>ACTION</th>
-				</tr>
+  return (
+    <main className="HomepageAdmin">
+      <aside>
+        <AdminMenu />
+      </aside>
+      <div>
+        <h1>Admin CP</h1>
+        <table>
+          <tr>
+            <th>ITEM ID</th>
+            <th>NAME</th>
+            <th>CATEGORY</th>
+            <th>ACTION</th>
+          </tr>
 
-			{ items }
+          {items}
+        </table>
 
-
-			</table>
-
-			<Link to='/admin/new'><img src={plusIcon} alt="add new item"/></Link>
-		</>
-	);
+        <Link to="/admin/new">
+          <img src={plusIcon} alt="add new item" />
+        </Link>
+      </div>
+    </main>
+  );
 }

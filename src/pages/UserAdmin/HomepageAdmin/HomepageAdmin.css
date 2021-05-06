@@ -1,0 +1,13 @@
+.HomepageAdmin {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: 1fr;
+}
+
+.HomepageAdmin aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}

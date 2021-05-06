@@ -8,6 +8,9 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn');
 router.get('/', categoriesCtrl.index)
 
 // POST api.items
-router.post('/', ensureLoggedIn, categoriesCtrl.create)
+router.post('/', categoriesCtrl.create)
+router.delete('/:id', categoriesCtrl.delete)
+
+router.put('/:id', categoriesCtrl.update);
 
 module.exports = router;

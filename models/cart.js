@@ -11,8 +11,9 @@ const cartSchema = new Schema({
             quantity: Number,
             price: Number
         }
-    ]
+    ],
+    paid: { type: Boolean, default: false}
     
-});
+}, { timestamps: true });
 
-module.exports = mongoose.model("Item", cartSchema, 'items');
+module.exports = mongoose.model("cart", cartSchema, 'carts');

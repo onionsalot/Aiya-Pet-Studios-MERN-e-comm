@@ -8,6 +8,7 @@ import ItemDetailsPage from '../ItemDetailsPage/ItemDetailsPage'
 import NavBar from '../../Components/NavBar/NavBar';
 import UpdateItemPage from '../UserAdmin/UpdateItemPage/UpdateItemPage';
 import RouteGuard from '../../Components/RouteGuard/RouteGuard'
+import CategoryPage from '../UserAdmin/CategoryPage/CategoryPage'
 import * as itemsAPI from '../../utilities/items-api'
 import * as categoriesAPI from '../../utilities/categories-api'
 
@@ -60,9 +61,18 @@ export default function App() {
 		setShowItems([...showItems, newItem])
 	}
 
+	function handleAddCategory(newCategory) {
+		setShowCategories([...showCategories, newCategory])
+	}
+
 	async function handleDelete(deletedItemID) {
 		await itemsAPI.deleteOne(deletedItemID);
 		setShowItems(showItems.filter(i => i._id !== deletedItemID))
+	}
+
+	async function handleDeleteCategory(deletedCategoryID) {
+		await categoriesAPI.deleteOne(deletedCategoryID);
+		setShowCategories(showCategories.filter(i => i._id !== deletedCategoryID))
 	}
 	
 	async function handleUpdate(updatedItem) {
@@ -80,6 +90,9 @@ export default function App() {
 					<Switch>
 						<Route path='/admin/new'>
 							<NewItemPage handleAddItem={handleAddItem} showCategories={showCategories}/>
+						</Route>
+						<Route path='/admin/category'>
+							<CategoryPage showCategories={showCategories} handleDeleteCategory={handleDeleteCategory} handleAddCategory={handleAddCategory}/>
 						</Route>
 						<Route exact path='/admin/edit'>
 							<UpdateItemPage handleUpdate={handleUpdate} showCategories={showCategories}/>

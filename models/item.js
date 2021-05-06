@@ -9,6 +9,6 @@ const itemSchema = new Schema({
   description: { type: String, required: true },
   tags: { type: String },
   type: { type: String, default: 'buyable', enum: ['buyable', 'pre-order', 'preview']}
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model("Item", itemSchema, 'items');
