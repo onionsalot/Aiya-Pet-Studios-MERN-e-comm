@@ -5,7 +5,7 @@ const cartsCtrl = require('../../controllers/api/carts')
 // GET api routes
 router.get('/:uid', cartsCtrl.index);
 router.post('/', cartsCtrl.create);
-router.delete('/', cartsCtrl.delete);
+router.delete('/:cid/:iid', cartsCtrl.delete);
 router.put('/:id', cartsCtrl.updateItem);
 
 

@@ -3,14 +3,15 @@ import ItemCard from '../../Components/ItemCard/ItemCard'
 import CategoryBar from '../../Components/CategoryBar/CategoryBar'
 import './ItemListPage.css'
 
-export default function ItemListPage({showItems, showCategories, currentCategory, setCurrentCategory, handleAddToCart, cartId}) {
-  const testThing = showItems.filter(item => item.category.includes(currentCategory))
-	const items = showItems
+export default function ItemListPage({showItems, showCategories, currentCategory, setCurrentCategory, handleAddToCart, allCarts}) {
+  const cartId = allCarts.filter((e) => e.paid === false)[0]
+  //const cartId = 1
+
+  const items = showItems
   .filter(item => item.category.includes(currentCategory))
   .map(item =>
 		<ItemCard item={ item } handleAddToCart={ handleAddToCart } cartId={ cartId } />)
 
-    console.log('TESTING OUT THE ITEMLISTPAGE SORTER =>', testThing)
 	return (
 		<main className="ItemListPage">
       <aside>

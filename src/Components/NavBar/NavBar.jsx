@@ -2,12 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import * as userService from '../../utilities/users-service';
 
-export default function NavBar({ user, setUser }) {
+export default function NavBar({ user, setUser, cartItems }) {
 	function handleLogOut() {
 		// Delegate to the users-service
 		userService.logOut();
 		// Update state will also cause a re-render
 		setUser(null);
+	}
+	let cartCount = 0
+	if (cartItems.length>0) {
+		cartCount = cartItems[0].length
 	}
 	return (
 		<nav>
@@ -24,7 +28,7 @@ export default function NavBar({ user, setUser }) {
 			</Link>
 			&nbsp; | &nbsp;
 			<Link to='/cart'>
-			Cart ()
+			Cart ({cartCount})
 			</Link>
 
 		</nav>

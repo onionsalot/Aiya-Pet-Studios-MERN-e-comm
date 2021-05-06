@@ -25,7 +25,10 @@ async function create(req, res, next) {
     
 }
 async function deleteItem(req, res, next) {
-    
+    //const deletedItemID = await Cart.findByIdAndRemove(req.params.id);
+    const deletedItemId = await Cart.updateOne({_id: req.params.cid}, { $pull: {"items": {_id: [req.params.iid]}}})
+    console.log('whut was removed?=>', deletedItemId)
+    res.status(200).json(deletedItemId)
 }
 async function updateItem(req, res, next) {
     console.log('addItem To Cart initiated....' + req.params.id + req.body)

@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import * as cartsAPI from "../../utilities/carts-api"
 
-export default function ItemCard({ item, handleAddToCart, showCart}) {
+export default function ItemCard({ item, handleAddToCart, cartId}) {
   const [show, setShow] = useState(false);
   const [addItem, setAddItem] = useState({
     itemId: item._id,
@@ -12,14 +12,15 @@ export default function ItemCard({ item, handleAddToCart, showCart}) {
     quantity: 5,
     price: item.price
   })
-
+  //const activeCart = allCarts.filter((e) => e.paid === false)
+  console.log('ALL CARTS',cartId)
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(`showCartId=> ${showCart} and addItem=> ${addItem}`)
-    const newItem = await cartsAPI.updateItem(showCart._id , addItem);
+    console.log(`showCartId=> ${cartId} and addItem=> ${addItem}`)
+    const newItem = await cartsAPI.updateItem(cartId._id, addItem );
     console.log(newItem)
     handleAddToCart(newItem)
   }

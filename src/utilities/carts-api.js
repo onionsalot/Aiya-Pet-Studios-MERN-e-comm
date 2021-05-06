@@ -10,3 +10,8 @@ export function updateItem(cartId, addItem) {
     console.log('API HIT // => updateItem()')
     return sendRequest(`${BASE_URL}/${cartId}`, "PUT", addItem)
 }
+
+export function deleteOneItem(cartId, itemId) {
+    console.log('API HIT // => deleteItem()')
+    return sendRequest(`${BASE_URL}/${cartId}/${itemId}`, "DELETE")
+}
