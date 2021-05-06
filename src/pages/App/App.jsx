@@ -11,9 +11,11 @@ import RouteGuard from '../../Components/RouteGuard/RouteGuard'
 import CategoryPage from '../UserAdmin/CategoryPage/CategoryPage'
 import * as itemsAPI from '../../utilities/items-api'
 import * as categoriesAPI from '../../utilities/categories-api'
+import * as cartsAPI from '../../utilities/carts-api'
 
 import './App.css';
 import ItemListPage from '../ItemListPage/ItemListPage';
+import CartPage from '../CartPage/CartPage';
 
 export default function App() {
 	const [isAdmin, setIsAdmin] = useState(false)
@@ -21,6 +23,7 @@ export default function App() {
 	const [showItems, setShowItems] = useState([]);
 	const [showCategories, setShowCategories] = useState([]);
 	const [currentCategory, setCurrentCategory] = useState(" ");
+	const [showCart, setShowCart] = useState([])
 	const history = useHistory();
 	const location = useLocation();
 
@@ -49,6 +52,18 @@ export default function App() {
 		}
 		getCategories();
 	}, [])
+	useEffect(() => {
+		async function getCarts() {
+			// get all carts from user
+			console.log('App.js getCarts initiated....')
+			const carts = await cartsAPI.getAll(user._id);
+			console.log('APP.JS after useeffect checks', carts)
+			// setshowcart to all carts with paid false
+			// setpastorders to all carts with paid true
+		}
+		getCarts();
+	}, [])
+
 	useEffect(() => {
 		async function changeCategories() {
 			console.log('changed to =>', currentCategory)
@@ -82,6 +97,12 @@ export default function App() {
 		  setShowItems(newItemsArray);
 	}
 
+	// ================== CART StuFF ================= //
+	async function handleAddToCart(addItem) {
+		console.log('attempting to add item => ', addItem)
+		const cart = await cartsAPI.create()
+	}
+
 	return (
 		<main className='App'>
 			{user ? (
@@ -100,11 +121,14 @@ export default function App() {
 						<Route path='/admin'>
 							<HomepageAdmin showItems={showItems} handleDelete={handleDelete}/>
 						</Route>
+						<Route exact path='/cart'>
+							<CartPage showCart={showCart}/>
+						</Route>
 						<Route exact path='/item/:id'>
 							<ItemDetailsPage/>
 						</Route>
 						<Route exact path='/'>
-							<ItemListPage showItems={showItems} showCategories={showCategories} currentCategory={currentCategory} setCurrentCategory={setCurrentCategory}/>
+							<ItemListPage showItems={showItems} showCategories={showCategories} currentCategory={currentCategory} setCurrentCategory={setCurrentCategory} handleAddToCart={handleAddToCart}/>
 						</Route>
 						<Redirect to='/' />
 					</Switch>

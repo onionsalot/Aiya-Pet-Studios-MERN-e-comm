@@ -19,7 +19,7 @@ export default function ItemTable({ item, handleDelete}) {
             { item.category }
         </td>
         <td>
-        <button className="icon" onClick={() => handleDelete(item._id)}><img src={deleteIcon} alt="Edit" /></button>
+        <button className="icon" onClick={() => handleDelete(item._id)}><img src={deleteIcon} alt="Delete" /></button>
           <Link to={
             {
               pathname: `/item/${item._id}`,

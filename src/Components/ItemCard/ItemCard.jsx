@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function ItemCard({ item, handleDelete}) {
+export default function ItemCard({ item, handleAddToCart}) {
 
 
   return (
@@ -24,6 +24,8 @@ export default function ItemCard({ item, handleDelete}) {
             }
           }>DETAILS</Link><br />
 
+
+          <button onClick={() => handleAddToCart(item._id)}>Add To Cart</button>
         <hr />
     </div>
   )

@@ -24,7 +24,7 @@ export default function NavBar({ user, setUser }) {
 				Log Out
 			</Link>
 			&nbsp; | &nbsp;
-			<Link to=''>
+			<Link to='/cart'>
 				Cart (0)
 			</Link>
 
