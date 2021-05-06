@@ -24,6 +24,8 @@ export default function App() {
 	const [showCategories, setShowCategories] = useState([]);
 	const [currentCategory, setCurrentCategory] = useState(" ");
 	const [showCart, setShowCart] = useState([])
+	const [showPaid, setShowPaid] = useState([])
+	const [cartItems, setCartItems] = useState([])
 	const history = useHistory();
 	const location = useLocation();
 
@@ -52,17 +54,7 @@ export default function App() {
 		}
 		getCategories();
 	}, [])
-	useEffect(() => {
-		async function getCarts() {
-			// get all carts from user
-			console.log('App.js getCarts initiated....')
-			const carts = await cartsAPI.getAll(user._id);
-			console.log('APP.JS after useeffect checks', carts)
-			// setshowcart to all carts with paid false
-			// setpastorders to all carts with paid true
-		}
-		getCarts();
-	}, [])
+
 
 	useEffect(() => {
 		async function changeCategories() {
@@ -98,16 +90,35 @@ export default function App() {
 	}
 
 	// ================== CART StuFF ================= //
+	useEffect(() => {
+		async function getCarts() {
+			// get all carts from user
+			console.log('App.js getCarts initiated....')
+			const carts = await cartsAPI.getAll(user._id);
+			const cart = carts
+			.filter((e) => e.paid === false)
+			.map((e) => {return e.items})
+			console.log('APP.JS after useeffect checks', cart)
+			// setshowcart to all carts with paid false
+			setShowCart(carts);
+			// setpastorders to all carts with paid true
+			// setShowPaid(carts.filter((e) => e.paid === true));
+
+		}
+		getCarts();
+	}, [])
+
 	async function handleAddToCart(addItem) {
-		console.log('attempting to add item => ', addItem)
-		const cart = await cartsAPI.create()
+		console.log('Added item to cart => ', addItem)
+		//setShowCart({...addItem})
+		//const cart = await cartsAPI.updateItem(showCart[0]._id, addItemId)
 	}
 
 	return (
 		<main className='App'>
 			{user ? (
 				<>
-					<NavBar user={user} setUser={setUser} />
+					<NavBar user={user} setUser={setUser} showCart={showCart}/>
 					<Switch>
 						<Route path='/admin/new'>
 							<NewItemPage handleAddItem={handleAddItem} showCategories={showCategories}/>
@@ -128,7 +139,7 @@ export default function App() {
 							<ItemDetailsPage/>
 						</Route>
 						<Route exact path='/'>
-							<ItemListPage showItems={showItems} showCategories={showCategories} currentCategory={currentCategory} setCurrentCategory={setCurrentCategory} handleAddToCart={handleAddToCart}/>
+							<ItemListPage showItems={showItems} showCategories={showCategories} currentCategory={currentCategory} setCurrentCategory={setCurrentCategory} handleAddToCart={handleAddToCart} showCart={showCart}/>
 						</Route>
 						<Redirect to='/' />
 					</Switch>

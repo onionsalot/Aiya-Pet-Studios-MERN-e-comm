@@ -9,7 +9,6 @@ export default function NavBar({ user, setUser }) {
 		// Update state will also cause a re-render
 		setUser(null);
 	}
-
 	return (
 		<nav>
 			<Link to='/admin'>Admin Home</Link>
@@ -25,7 +24,7 @@ export default function NavBar({ user, setUser }) {
 			</Link>
 			&nbsp; | &nbsp;
 			<Link to='/cart'>
-				Cart (0)
+			Cart ()
 			</Link>
 
 		</nav>

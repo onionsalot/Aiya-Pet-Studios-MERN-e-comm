@@ -32,11 +32,9 @@ export default function CategoryPage({ showCategories, handleDeleteCategory, han
       }
 
   const handleClose = () => setShow(false);
+      const handleShow = () => setShow(true);
 
 
-  function handleShow() {
-    setShow(true);
-  }
     const items = showCategories.map((category) => (
     <tr>
         <td>{category._id}</td>
@@ -67,7 +65,7 @@ export default function CategoryPage({ showCategories, handleDeleteCategory, han
 
 
       </div>
-      <Button variant="primary" onClick={() => handleShow()}>
+      <Button variant="primary" onClick={handleShow}>
         Add New Item
       </Button>
 

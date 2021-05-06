@@ -6,7 +6,7 @@ export function getAll(userId) {
     return sendRequest(`${BASE_URL}/${userId}`)
 }
 
-export function create(cat) {
-    console.log('API HIT // => create()')
-    return sendRequest(BASE_URL, "POST", cat)
+export function updateItem(cartId, addItem) {
+    console.log('API HIT // => updateItem()')
+    return sendRequest(`${BASE_URL}/${cartId}`, "PUT", addItem)
 }
