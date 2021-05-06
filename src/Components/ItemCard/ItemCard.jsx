@@ -35,6 +35,7 @@ export default function ItemCard({ item, handleAddToCart, cartId}) {
         { item.description} <br />
         { item.tags} <br />
         { item._id}<br />
+        { item.images }<br />
   
           <Link to={
             {
@@ -63,7 +64,7 @@ export default function ItemCard({ item, handleAddToCart, cartId}) {
         { item.description} <br />
         { item.tags} <br />
         { item._id}<br />
-
+        { item.images }<br />
 
           <form autoComplete="off" onSubmit={handleSubmit}>
                     <input

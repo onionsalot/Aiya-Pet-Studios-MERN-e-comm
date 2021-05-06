@@ -1,9 +1,11 @@
 import { Component, useState } from "react";
 import * as itemsAPI from "../../../utilities/items-api";
+import Axios from 'axios'
 
 export default function NewItemPage({handleAddItem, showCategories}) {
   const categoryList = showCategories.map(item =>
     <option value={item.name}>{item.name}</option>)
+    const [image, setImage] = useState('');
   const [item, setItem] = useState({
     name: "",
     category: `${showCategories[0].name}`,
@@ -12,12 +14,18 @@ export default function NewItemPage({handleAddItem, showCategories}) {
     description: "",
     tags: "",
     buyable: "buyable",
+    images: ""
   });
 
   async function handleSubmit(e) {
     e.preventDefault();
     console.log(item)
     const newItem = await itemsAPI.create(item)
+    const formData = new FormData()
+    formData.append('file', image)
+    formData.append('upload_preset', 'xdgkaefq')
+    Axios.post("https://api.cloudinary.com/v1_1/dq8yhiefg/image/upload", formData).then((response) =>
+    console.log(response.data.url))
     console.log(newItem)
     handleAddItem(newItem)
   }
@@ -25,11 +33,28 @@ export default function NewItemPage({handleAddItem, showCategories}) {
     // console.log(`${[e.target.name]}: ${e.target.value}`)
     setItem({...item, [e.target.name]: e.target.value})
   }
+  const uploadImage = () => {
+    const formData = new FormData()
+    formData.append('file', image)
+    formData.append('upload_preset', 'xdgkaefq')
+    Axios.post("https://api.cloudinary.com/v1_1/dq8yhiefg/image/upload", formData).then((response) =>
+    setItem({...item, images: response.data.url}))
+  }
+
+
 
   
   return (
     <div>
       <h1>NewItemPage</h1>
+
+        <label>Images</label>
+        <input
+          type="file"
+          onChange={(event) => {setImage(event.target.files[0])}}
+        /><button onClick={uploadImage}>Upload Image</button> 
+        <br />
+        <p>{item.images === "" ? "Upload image before submitting!" : "Upload Success!!"}</p>
       <form autoComplete="off" onSubmit={handleSubmit}>
         <label>Name</label>
         <input
@@ -86,6 +111,7 @@ export default function NewItemPage({handleAddItem, showCategories}) {
             <option value="pre-order">Pre-Order</option>
             <option value="preview">Preview</option>
         </select>
+
         <button type="submit">
               ADD ITEM
             </button>
