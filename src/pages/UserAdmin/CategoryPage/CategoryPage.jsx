@@ -1,8 +1,4 @@
 import { useState } from "react";
-import * as usersService from "../../../utilities/users-service";
-import ItemTable from "../../../Components/ItemTable/ItemTable";
-import { Link } from "react-router-dom";
-import plusIcon from "../../../pictures/plus.png";
 import AdminMenu from "../../../Components/AdminMenu/AdminMenu";
 import './CategoryPage.css'
 import Modal from 'react-bootstrap/Modal'
@@ -23,11 +19,9 @@ export default function CategoryPage({ showCategories, handleDeleteCategory, han
         setNewCategory({
             name: "",
         })
-        console.log(cat)
         handleAddCategory(cat)
       }
       function handleChange(e) {
-        // console.log(`${[e.target.name]}: ${e.target.value}`)
         setNewCategory({...newCategory, [e.target.name]: e.target.value})
       }
 

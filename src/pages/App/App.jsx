@@ -27,13 +27,10 @@ export default function App() {
 	const [cartItems, setCartItems] = useState([])
 	const history = useHistory();
 	const location = useLocation();
-	console.log('what is getUser()', getUser())
 	const currentUrl = String(location.pathname);
 
 	useEffect(() => {
-		console.log('USE LOCATION IS =>', currentUrl)
 		if (currentUrl.includes('admin')) {
-			console.log('contains admin')
 			history.push('/admin');
 		} else {
 			history.push('/');
@@ -57,37 +54,6 @@ export default function App() {
 		}
 		getItems();
 	}, [user])
-	// useEffect(() => {
-	// 	async function getCategories() {
-	// 		const categories = await categoriesAPI.getAll();
-	// 		setShowCategories(categories)
-	// 	}
-	// 	getCategories();
-	// }, [])
-	// useEffect(() => {
-	// 	async function getCarts() {
-	// 		// get all carts from user
-	// 		const carts = await cartsAPI.getAll(user._id);
-	// 		setAllCarts(carts)
-	// 		const cart = carts
-	// 			.filter((e) => e.paid === false)
-	// 			.map((e) => {return e.items})
-	// 		setCartItems(cart)
-	// 		// setshowcart to all carts with paid false
-	// 		// setpastorders to all carts with paid true
-	// 		// setShowPaid(carts.filter((e) => e.paid === true));
-	// 	}
-	// 	getCarts()
-	// }, [])
-
-
-	useEffect(() => {
-		async function changeCategories() {
-			console.log('changed to =>', currentCategory)
-
-		}
-		changeCategories()
-	}, [currentCategory])
 
 	function handleAddItem(newItem) {
 		setShowItems([...showItems, newItem])
@@ -117,10 +83,7 @@ export default function App() {
 	// ================== CART StuFF ================= //
 
 	async function handleAddToCart(addItem) {
-		console.log('Added item to cart => ', addItem)
 		setCartItems([addItem.items])
-		//setShowCart({...addItem})
-		//const cart = await cartsAPI.updateItem(showCart[0]._id, addItemId)
 	}
 
 	return (

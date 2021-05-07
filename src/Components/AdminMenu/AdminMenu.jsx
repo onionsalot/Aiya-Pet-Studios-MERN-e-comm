@@ -11,6 +11,9 @@ export default function AdminMenu() {
 			<li><Link to="/admin/items">All Items</Link></li>
 
 			<li><Link to="/admin/category">All Categories</Link></li>
+			
+			<li>Unfulfilled Orders</li>
+			<li>All Orders</li>
 		</ul>
 	);
 }

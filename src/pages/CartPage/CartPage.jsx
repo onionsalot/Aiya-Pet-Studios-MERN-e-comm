@@ -6,7 +6,6 @@ import { useParams, useHistory } from "react-router-dom";
 import "./CartPage.css";
 
 export default function CartPage({ cartItems, setCartItems, allCarts }) {
-  console.log("page load, what is cartItems?", cartItems);
   const [cart, setCart] = useState([cartItems])
   const history = useHistory();
   function goBack() {
@@ -44,13 +43,10 @@ export default function CartPage({ cartItems, setCartItems, allCarts }) {
       </tr>
     ));
     const cartId = allCarts.filter((e) => e.paid === false)[0];
-    console.log("cartpage", cartItems);
     async function handleRemoveFromCart(deletedItemId) {
-      console.log(`deleteing item ${deletedItemId} from cart ${cartId._id}`);
       await cartsAPI.deleteOneItem(cartId._id, deletedItemId);
       const filtered = cartItems[0].filter((i) => i._id !== deletedItemId);
       setCartItems([cartItems[0].filter((i) => i._id !== deletedItemId)]);
-      console.log("after deleting =>", filtered);
     }
 
     async function handleSubmit(e) {
@@ -63,7 +59,6 @@ export default function CartPage({ cartItems, setCartItems, allCarts }) {
         quantity: e.target.quantity.value,
       };
       const update = await cartsAPI.updateQuantity(cartId._id, updatedItem);
-      console.log('updated item is===>',update);
       setCart([...cartItems, updatedItem])
     }
   } else {

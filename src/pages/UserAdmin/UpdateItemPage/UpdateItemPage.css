@@ -1,4 +1,4 @@
-.NewItemPage {
+.UpdateItemPage {
     height: 68vh;
     display: flex;
     flex-direction: column;
@@ -8,7 +8,7 @@
     align-items: stretch;
   }
 
-  .NewItemPage .content {
+  .UpdateItemPage .content {
     background-color: var(--tan-1);
     width: 96%;
     border: .1vmin solid var(--tan-3);
@@ -18,7 +18,7 @@
     overflow-y: scroll;
 }
 
-.NewItemPage button {
+.UpdateItemPage button {
     background-color: rgb(114, 20, 114);
 
 }

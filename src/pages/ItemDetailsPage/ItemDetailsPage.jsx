@@ -14,7 +14,6 @@ export default function ItemDetailsPage() {
     async function getItem() {
       const item = await itemsAPI.getOne(id);
       setShowItem(item);
-      console.log(item);
     }
     getItem();
   }, []);

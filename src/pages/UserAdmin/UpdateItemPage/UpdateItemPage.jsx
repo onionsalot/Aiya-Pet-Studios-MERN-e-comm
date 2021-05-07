@@ -1,4 +1,4 @@
-import { Component, useState } from "react";
+import { useState } from "react";
 import * as itemsAPI from "../../../utilities/items-api";
 import { useLocation } from "react-router";
 import "./UpdateItemPage";
@@ -24,11 +24,9 @@ export default function UpdateItemPage({ handleUpdate, showCategories }) {
   async function handleSubmit(e) {
     e.preventDefault();
     const updatedItem = await itemsAPI.update(currentItem);
-    console.log(updatedItem);
     handleUpdate(updatedItem);
   }
   function handleChange(e) {
-    // console.log(`${[e.target.name]}: ${e.target.value}`)
     setCurrentItem({ ...currentItem, [e.target.name]: e.target.value });
   }
 

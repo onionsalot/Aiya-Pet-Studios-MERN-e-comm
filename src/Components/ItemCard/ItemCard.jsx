@@ -4,15 +4,11 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import * as cartsAPI from "../../utilities/carts-api";
 import "./ItemCard.css";
-import Card from 'react-bootstrap/Card'
-import ListGroup from 'react-bootstrap/ListGroup'
 import Placeholder from '../../pictures/placeholder.jpeg'
 
 export default function ItemCard({ item, handleAddToCart, cartId }) {
   const [show, setShow] = useState(false);
 
-  //const activeCart = allCarts.filter((e) => e.paid === false)
-  console.log("ALL CARTS", cartId);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -25,9 +21,7 @@ export default function ItemCard({ item, handleAddToCart, cartId }) {
       price: e.target.price.value,
       quantity: e.target.quantity.value,
     };
-    console.log(`showCartId=> ${cartId} and addItem=> ${itemToAdd.name}`);
     const newItem = await cartsAPI.updateItem(cartId._id, itemToAdd);
-    console.log(newItem);
     handleAddToCart(newItem);
   }
 

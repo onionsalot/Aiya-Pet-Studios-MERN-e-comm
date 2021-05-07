@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# E-Commerce / Aiya Pet Studio App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  
 
-## Available Scripts
+### What is this app?
+---
+[Click here to start!](https://pet-studio.herokuapp.com/)
 
-In the project directory, you can run:
+A GA SEI project used to demonstrate MERN infrastructure. This is a sample e-commerce site that will demonstrate the use of full CRUD on multiple mongoDb models.
 
-### `npm start`
+My girlfriend is an independent artist who uses Etsy as her main means of pushing products. This app was inspired by that and will be a stepping point for a full site dedicated to her work.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ERD:
+![erd](/screenshots/ERD.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+TRELLO:
+[Link to Trello Board](https://trello.com/b/uI3WyiJv/project3-ecomm-site)
 
-### `npm test`
+WIREFRAME:
+[Link to Wireframe Board](https://balsamiq.cloud/sjzisxq/pkhxu3u)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
+  
+### Technologies Used:
+---
 
-### `npm run build`
+- React
+- Mongoose/MongoDB
+- Express
+- Node.js
+- Css/bootstrap react
+- HTML
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Next Steps (ICEBOX FEATURES):
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Ordered from highest priority to lowest;
+- Past Orders
+- Checkout
+- Other admin functions (unfulfilled orders, etc)
+- Open site to not force login
+- Favorites
+- Multi-Image upload
+- More Styling
+- Dark Mode
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+### Screenshots:
+---
+![pic1](/screenshots/1.png)
+![pic2](/screenshots/2.png)
+![pic3](/screenshots/3.png)
+![pic4](/screenshots/4.png)

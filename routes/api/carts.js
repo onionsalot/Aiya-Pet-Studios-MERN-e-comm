@@ -3,7 +3,6 @@ const router = express.Router();
 const cartsCtrl = require('../../controllers/api/carts')
 const ensureLoggedIn = require('../../config/ensureLoggedIn');
 
-// GET api routes
 router.get('/:uid', ensureLoggedIn, cartsCtrl.index);
 router.post('/', ensureLoggedIn, cartsCtrl.create);
 router.delete('/:cid/:iid', ensureLoggedIn, cartsCtrl.delete);

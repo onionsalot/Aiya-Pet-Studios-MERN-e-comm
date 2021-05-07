@@ -12,7 +12,6 @@ export default function ItemListPage({
   allCarts,
 }) {
   const cartId = allCarts.filter((e) => e.paid === false)[0];
-  //const cartId = 1
 
   const items = showItems
     .filter((item) => item.category.includes(currentCategory))

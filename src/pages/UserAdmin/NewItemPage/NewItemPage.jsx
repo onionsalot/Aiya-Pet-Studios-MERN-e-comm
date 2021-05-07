@@ -1,4 +1,4 @@
-import { Component, useState } from "react";
+import { useState } from "react";
 import * as itemsAPI from "../../../utilities/items-api";
 import Axios from 'axios';
 import './NewItemPage.css'
@@ -20,18 +20,15 @@ export default function NewItemPage({handleAddItem, showCategories}) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(item)
     const newItem = await itemsAPI.create(item)
     const formData = new FormData()
     formData.append('file', image)
     formData.append('upload_preset', 'xdgkaefq')
     Axios.post("https://api.cloudinary.com/v1_1/dq8yhiefg/image/upload", formData).then((response) =>
     console.log(response.data.url))
-    console.log(newItem)
     handleAddItem(newItem)
   }
   function handleChange(e) {
-    // console.log(`${[e.target.name]}: ${e.target.value}`)
     setItem({...item, [e.target.name]: e.target.value})
   }
   const uploadImage = () => {
