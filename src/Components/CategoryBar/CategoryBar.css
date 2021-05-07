@@ -1,4 +1,4 @@
-ul {
+.CategoryBar ul {
     list-style-type: none;
     margin: 2px 10px;
     padding: 0 2px 0 2px;
@@ -8,12 +8,12 @@ ul {
     border-radius: 5px;
 }
 
-li {
+.CategoryBar li {
     cursor:pointer;
     float: left;
 }
 
-li span {
+.CategoryBar li span {
     display: block;
     color: white;
     text-align: center;
@@ -22,7 +22,7 @@ li span {
 
 }
 
-.active {
+.CategoryBar .active {
     color: rgb(132, 0, 255);
     border: 1px solid black;
     border-radius: 10px 10px 0 0;

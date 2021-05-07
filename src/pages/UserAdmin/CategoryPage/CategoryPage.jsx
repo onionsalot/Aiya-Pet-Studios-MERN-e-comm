@@ -51,7 +51,7 @@ export default function CategoryPage({ showCategories, handleDeleteCategory, han
       <aside>
         <AdminMenu />
       </aside>
-      <div>
+      <div className="content">
         <h1>Categories</h1>
         <table>
           <tr>
@@ -64,10 +64,10 @@ export default function CategoryPage({ showCategories, handleDeleteCategory, han
         </table>
 
 
-      </div>
       <Button variant="primary" onClick={handleShow}>
         Add New Item
       </Button>
+      </div>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

@@ -1,10 +1,15 @@
 import * as cartsAPI from "../../utilities/carts-api";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import Dropdown from 'react-bootstrap/Dropdown'
+import Dropdown from "react-bootstrap/Dropdown";
+import { useParams, useHistory } from "react-router-dom";
+import "./CartPage.css";
 
 export default function CartPage({ cartItems, setCartItems, allCarts }) {
   console.log("page load, what is cartItems?", cartItems);
-
+  const history = useHistory();
+  function goBack() {
+    history.goBack();
+  }
 
   let items;
   if (cartItems.length > 0) {
@@ -13,44 +18,27 @@ export default function CartPage({ cartItems, setCartItems, allCarts }) {
         <td>{item.name}</td>
         <td>{item.price}</td>
         <td>
-          {item.quantity}
-          <DropdownButton id="dropdown-basic-button" title="Dropdown button">
+          <DropdownButton id="dropdown-basic-button" title={item.quantity}>
             <Dropdown>
-                <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
+                <input type="hidden" name="_id" value={item._id}></input>
+                <input type="hidden" name="itemId" value={item.itemId}></input>
+                <input type="hidden" name="name" value={item.name}></input>
+                <input type="hidden" name="price" value={item.price}></input>
                 <input
-                    type="hidden"
-                    name="_id"
-                    value={item._id}>
-                    </input>
-                    <input
-                    type="hidden"
-                    name="itemId"
-                    value={item.itemId}>
-                    </input>
-                <input
-                    type="hidden"
-                    name="name"
-                    value={item.name}>
-                    </input>
-                    <input
-                    type="hidden"
-                    name="price"
-                    value={item.price}>
-                    </input>
-                    <input
-                    type="number"
-                    name="quantity"
-                    defaultValue={item.quantity}>
-                    </input>
-                    <button type="submit">submit</button>
-                </form>
-
+                  type="number"
+                  name="quantity"
+                  defaultValue={item.quantity}
+                ></input>
+                <button type="submit">submit</button>
+              </form>
             </Dropdown>
           </DropdownButton>
         </td>
-        <tr>
+        <td>
           <button onClick={() => handleRemoveFromCart(item._id)}>REMOVE</button>
-        </tr>
+        </td>
+        <td>${item.price * item.quantity}</td>
       </tr>
     ));
     const cartId = allCarts.filter((e) => e.paid === false)[0];
@@ -64,33 +52,44 @@ export default function CartPage({ cartItems, setCartItems, allCarts }) {
     }
 
     async function handleSubmit(e) {
-        e.preventDefault();
-        const updatedItem = {
-            _id: e.target._id.value,
-            itemId: e.target.itemId.value,
-            name: e.target.name.value,
-            price: e.target.price.value,
-            quantity: e.target.quantity.value,
-        }
-        const update = await cartsAPI.updateQuantity(cartId._id, updatedItem)
+      e.preventDefault();
+      const updatedItem = {
+        _id: e.target._id.value,
+        itemId: e.target.itemId.value,
+        name: e.target.name.value,
+        price: e.target.price.value,
+        quantity: e.target.quantity.value,
+      };
+      const update = await cartsAPI.updateQuantity(cartId._id, updatedItem);
     }
   } else {
     items = "There are no items to display!";
   }
   return (
-    <>
-      <h1>Cart Page</h1>
-      {/* {showCart._id}<br/> */}
-      {/* {cartItems[0].length > 0 ? "HAS STUFF" : "Empty Cart..."}
-        {cartItems[0]} */}
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Quantity</th>
-        </tr>
-        {items}
-      </table>
-    </>
+    <main className="CartPage">
+      <button className="back-button" onClick={goBack}>
+        GO BACK
+      </button>
+      <div className="content">
+        <h1>Cart Items</h1>
+        <table className="cart-table">
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Action</th>
+            <th>Cost</th>
+          </tr>
+          {items}
+          <tr>
+              <th />
+              <th />
+              <th />
+              <th />
+              <th> Total: $</th>
+          </tr>
+        </table>
+      </div>
+    </main>
   );
 }

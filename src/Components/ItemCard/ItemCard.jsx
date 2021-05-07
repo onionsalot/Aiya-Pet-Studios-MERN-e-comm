@@ -18,6 +18,7 @@ export default function ItemCard({ item, handleAddToCart, cartId }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    handleClose();
     const itemToAdd = {
       itemId: e.target.itemId.value,
       name: e.target.name.value,
@@ -58,23 +59,18 @@ export default function ItemCard({ item, handleAddToCart, cartId }) {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add New Category</Modal.Title>
+          <Modal.Title>Add to Cart</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {item.name} <br />
-          {item.category} <br />
-          {item.quantity} <br />
-          {item.price} <br />
-          {item.description} <br />
-          {item.tags} <br />
-          {item._id}
-          <br />
-          {item.images}
-          <br />
+          <b>Name:</b> {item.name} <br />
+          <b>Quantity:</b> {item.quantity} <br />
+          <b>Price:</b> {item.price} <br />
+
           <form autoComplete="off" onSubmit={handleSubmit}>
             <input type="hidden" name="itemId" value={item._id}></input>
             <input type="hidden" name="name" value={item.name}></input>
             <input type="hidden" name="price" value={item.price}></input>
+            <label><b>Amount to buy?</b></label>
             <input type="number" name="quantity" defaultValue="1"></input>
             <button type="submit">submit</button>
           </form>

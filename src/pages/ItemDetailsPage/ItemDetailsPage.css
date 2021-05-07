@@ -1,4 +1,4 @@
-.ItemListPage {
+.ItemDetailsPage {
     height: 68vh;
     display: flex;
     flex-direction: column;
@@ -8,27 +8,21 @@
     align-items: stretch;
   }
 
-.ItemListPage .content {
+  .ItemDetailsPage .content {
     background-color: var(--tan-1);
     width: 96%;
     border: .1vmin solid var(--tan-3);
     border-radius: 5px;
-    margin: 2px 10px;
+    margin: 10px 10px;
     padding: 0 2px 0 2px;
     overflow-y: scroll;
 }
 
-.ItemListPage aside {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
+.card-image {
+    width: 400px;
+    height: 300px;
 }
 
-.ItemListPage .list-container {
-    display: flex;
-    margin:10px;
-    flex-wrap: wrap;
-    justify-content: space-around;
+.back-button {
+    background-color: rgb(114, 20, 114);
 }

@@ -24,7 +24,7 @@ export default function HomepageAdmin({ showItems, handleDelete, isAdmin }) {
       <aside>
         <AdminMenu />
       </aside>
-      <div>
+      <div className="content">
         <h1>Admin CP</h1>
         <table>
           <tr>
