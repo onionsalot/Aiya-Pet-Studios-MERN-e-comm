@@ -127,7 +127,7 @@ export default function App() {
 		<main className='App'>
 			{user ? (
 				<>
-					<NavBar user={user} setUser={setUser} cartItems={cartItems}/>
+					<NavBar user={user} setUser={setUser} cartItems={cartItems} isAdmin={isAdmin}/>
 					<div className="banner-container"><img className="banner" src={Banner} alt="Banner"/></div>
 					<Switch>
 						<Route path='/admin/new'>

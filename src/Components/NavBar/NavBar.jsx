@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as userService from '../../utilities/users-service';
+import './NavBar.css'
 
-export default function NavBar({ user, setUser, cartItems }) {
+export default function NavBar({ user, setUser, cartItems, isAdmin }) {
 	function handleLogOut() {
 		// Delegate to the users-service
 		userService.logOut();
@@ -13,15 +14,22 @@ export default function NavBar({ user, setUser, cartItems }) {
 	if (cartItems.length>0) {
 		cartCount = cartItems[0].length
 	}
+
 	return (
-		<nav>
-			<Link to='/admin'>Admin Home</Link>
-			&nbsp; | &nbsp;
-			<Link to='/'>User Home</Link>
-			&nbsp; | &nbsp;
-			<span>{user.name}</span>
-			&nbsp; | &nbsp;
-			<span>Account Level: {user.acctlvl}</span>
+		<nav className="NavBar">
+
+			<div className="nav-left">
+				{isAdmin ? (
+					<Link to='/admin'>Admin Home</Link>
+
+
+				) : (
+					<div></div>
+				)}
+			</div>
+
+			<div className="nav-right">
+			<span>Welcome back, {user.name}</span>
 			&nbsp; | &nbsp;
 			<Link to='' onClick={handleLogOut}>
 				Log Out
@@ -30,6 +38,7 @@ export default function NavBar({ user, setUser, cartItems }) {
 			<Link to='/cart'>
 			Cart ({cartCount})
 			</Link>
+			</div>
 
 		</nav>
 	);

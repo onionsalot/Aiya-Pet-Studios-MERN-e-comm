@@ -1,11 +1,13 @@
 import * as cartsAPI from "../../utilities/carts-api";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
+import {useState} from 'react';
 import { useParams, useHistory } from "react-router-dom";
 import "./CartPage.css";
 
 export default function CartPage({ cartItems, setCartItems, allCarts }) {
   console.log("page load, what is cartItems?", cartItems);
+  const [cart, setCart] = useState([cartItems])
   const history = useHistory();
   function goBack() {
     history.goBack();
@@ -16,7 +18,7 @@ export default function CartPage({ cartItems, setCartItems, allCarts }) {
     items = cartItems[0].map((item) => (
       <tr>
         <td>{item.name}</td>
-        <td>{item.price}</td>
+        <td>$ {item.price}</td>
         <td>
           <DropdownButton id="dropdown-basic-button" title={item.quantity}>
             <Dropdown>
@@ -61,6 +63,8 @@ export default function CartPage({ cartItems, setCartItems, allCarts }) {
         quantity: e.target.quantity.value,
       };
       const update = await cartsAPI.updateQuantity(cartId._id, updatedItem);
+      console.log('updated item is===>',update);
+      setCart([...cartItems, updatedItem])
     }
   } else {
     items = "There are no items to display!";

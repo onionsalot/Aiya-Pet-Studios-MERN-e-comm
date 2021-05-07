@@ -1,6 +1,7 @@
 import { Component, useState } from "react";
 import * as itemsAPI from "../../../utilities/items-api";
-import Axios from 'axios'
+import Axios from 'axios';
+import './NewItemPage.css'
 
 export default function NewItemPage({handleAddItem, showCategories}) {
   const categoryList = showCategories.map(item =>
@@ -45,7 +46,9 @@ export default function NewItemPage({handleAddItem, showCategories}) {
 
   
   return (
-    <div>
+    <div className="NewItemPage">
+      <div className="content">
+
       <h1>NewItemPage</h1>
 
         <label>Images</label>
@@ -116,6 +119,7 @@ export default function NewItemPage({handleAddItem, showCategories}) {
               ADD ITEM
             </button>
       </form>
+      </div>
     </div>
   );
 }
