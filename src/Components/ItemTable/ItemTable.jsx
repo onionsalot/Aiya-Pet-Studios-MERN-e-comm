@@ -34,7 +34,7 @@ export default function ItemTable({ item, handleDelete}) {
               pathname: '/admin/edit',
               state: { item }
             }
-          }><img src={editIcon} alt="Edit" /></Link>
+          }><img className="icon" src={editIcon} alt="Edit" /></Link>
         </td>
       </>
     // <div className="item-card">

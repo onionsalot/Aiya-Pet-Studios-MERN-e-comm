@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
-import * as cartsAPI from "../../utilities/carts-api"
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import * as cartsAPI from "../../utilities/carts-api";
+import "./ItemCard.css";
+import Card from 'react-bootstrap/Card'
+import ListGroup from 'react-bootstrap/ListGroup'
+import Placeholder from '../../pictures/placeholder.jpeg'
 
-export default function ItemCard({ item, handleAddToCart, cartId}) {
+export default function ItemCard({ item, handleAddToCart, cartId }) {
   const [show, setShow] = useState(false);
 
   //const activeCart = allCarts.filter((e) => e.paid === false)
-  console.log('ALL CARTS',cartId)
+  console.log("ALL CARTS", cartId);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -19,76 +23,61 @@ export default function ItemCard({ item, handleAddToCart, cartId}) {
       name: e.target.name.value,
       price: e.target.price.value,
       quantity: e.target.quantity.value,
+    };
+    console.log(`showCartId=> ${cartId} and addItem=> ${itemToAdd.name}`);
+    const newItem = await cartsAPI.updateItem(cartId._id, itemToAdd);
+    console.log(newItem);
+    handleAddToCart(newItem);
   }
-    console.log(`showCartId=> ${cartId} and addItem=> ${itemToAdd.name}`)
-    const newItem = await cartsAPI.updateItem(cartId._id, itemToAdd );
-    console.log(newItem)
-    handleAddToCart(newItem)
-  }
+
+  const currentImage = item.images ? <img className="card-image" src={item.images} alt="Item"/> : <img className="card-image" src={Placeholder} alt="Item"/>
   return (
-    
-    <div className="item-card">
-        { item.name } <br />
-        { item.category} <br />
-        { item.quantity} <br />
-        { item.price} <br />
-        { item.description} <br />
-        { item.tags} <br />
-        { item._id}<br />
-        { item.images }<br />
-  
-          <Link to={
-            {
-              pathname: `/item/${item._id}`,
-              state: {
-                item:{item}
-              }
-            }
-          }>DETAILS</Link><br />
+    <div className="ItemCard">
+      {currentImage}
+      <div class="container">
+        <h4><b>{item.name}</b></h4> 
+        <p>$<span className='price'>{item.price}</span></p>
+        <p>Quantity: {item.quantity} </p>
 
-
-
-          <Button variant="primary" onClick={handleShow}>
+      <Link
+        to={{
+          pathname: `/item/${item._id}`,
+          state: {
+            item: { item },
+          },
+        }}
+        >
+        DETAILS
+      </Link>
+      <br />
+      <Button variant="primary" onClick={handleShow}>
         Add New Item
       </Button>
+        </div>
+
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add New Category</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        { item.name } <br />
-        { item.category} <br />
-        { item.quantity} <br />
-        { item.price} <br />
-        { item.description} <br />
-        { item.tags} <br />
-        { item._id}<br />
-        { item.images }<br />
-
+          {item.name} <br />
+          {item.category} <br />
+          {item.quantity} <br />
+          {item.price} <br />
+          {item.description} <br />
+          {item.tags} <br />
+          {item._id}
+          <br />
+          {item.images}
+          <br />
           <form autoComplete="off" onSubmit={handleSubmit}>
-                    <input
-                    type="hidden"
-                    name="itemId"
-                    value={item._id}>
-                    </input>
-                <input
-                    type="hidden"
-                    name="name"
-                    value={item.name}>
-                    </input>
-                    <input
-                    type="hidden"
-                    name="price"
-                    value={item.price}>
-                    </input>
-                    <input
-                    type="number"
-                    name="quantity"
-                    defaultValue="1">
-                    </input>
-                    <button type="submit">submit</button>
-                </form>
+            <input type="hidden" name="itemId" value={item._id}></input>
+            <input type="hidden" name="name" value={item.name}></input>
+            <input type="hidden" name="price" value={item.price}></input>
+            <input type="number" name="quantity" defaultValue="1"></input>
+            <button type="submit">submit</button>
+          </form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -96,7 +85,6 @@ export default function ItemCard({ item, handleAddToCart, cartId}) {
           </Button>
         </Modal.Footer>
       </Modal>
-        <hr />
     </div>
-  )
+  );
 }

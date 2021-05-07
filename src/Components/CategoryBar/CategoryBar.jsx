@@ -7,10 +7,11 @@ export default function CategoryBar({ showCategories , currentCategory, setCurre
 	return (
 		<ul>
 			{showCategories.map((c, idx) => (
-				<li 
-				className={c.name === currentCategory ? 'active' : ''}
-				onClick={() => setCurrentCategory(c.name)}>{c.name}</li>
+				<li>
+					<span className={c.name === currentCategory ? 'active' : ''}
+				onClick={() => setCurrentCategory(c.name)}>{c.name}</span></li>
 			))}
 		</ul>
+		
 	);
 }

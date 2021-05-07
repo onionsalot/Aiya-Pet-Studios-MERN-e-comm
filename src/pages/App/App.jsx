@@ -8,6 +8,7 @@ import ItemDetailsPage from '../ItemDetailsPage/ItemDetailsPage'
 import NavBar from '../../Components/NavBar/NavBar';
 import UpdateItemPage from '../UserAdmin/UpdateItemPage/UpdateItemPage';
 import CategoryPage from '../UserAdmin/CategoryPage/CategoryPage'
+import Banner from '../../pictures/banner.png'
 import * as itemsAPI from '../../utilities/items-api'
 import * as categoriesAPI from '../../utilities/categories-api'
 import * as cartsAPI from '../../utilities/carts-api'
@@ -127,6 +128,7 @@ export default function App() {
 			{user ? (
 				<>
 					<NavBar user={user} setUser={setUser} cartItems={cartItems}/>
+					<div className="banner-container"><img className="banner" src={Banner} alt="Banner"/></div>
 					<Switch>
 						<Route path='/admin/new'>
 							<NewItemPage handleAddItem={handleAddItem} showCategories={showCategories} isAdmin={isAdmin}/>

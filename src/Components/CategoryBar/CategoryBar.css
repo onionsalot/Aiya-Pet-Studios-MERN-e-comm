@@ -1,7 +1,31 @@
+ul {
+    list-style-type: none;
+    margin: 2px 10px;
+    padding: 0 2px 0 2px;
+    overflow: hidden;
+    background-color: rgba(44, 44, 44, 0.5);
+    width: 96%;
+    border-radius: 5px;
+}
+
 li {
     cursor:pointer;
+    float: left;
+}
+
+li span {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+
 }
 
 .active {
-    color: blueviolet;
+    color: rgb(132, 0, 255);
+    border: 1px solid black;
+    border-radius: 10px 10px 0 0;
+    background-color: rgba(44, 44, 44, 0.6);
+
 }

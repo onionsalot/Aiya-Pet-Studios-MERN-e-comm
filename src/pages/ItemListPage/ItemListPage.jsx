@@ -17,10 +17,11 @@ export default function ItemListPage({showItems, showCategories, currentCategory
       <aside>
       <CategoryBar showCategories={showCategories} currentCategory={currentCategory} setCurrentCategory={setCurrentCategory}/>
       </aside>
-      <div>
+      <div className="content">
 			<h1>HomePage</h1>
-
+      <div className="list-container">
       { items.length> 0  ? items : "Welcome to Aiya's Pet Studios. Click on a category to begin!"}
+      </div>
 
       </div>
 

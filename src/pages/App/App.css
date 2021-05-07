@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+
+.App {
+  background-color: blueviolet;
+  height: 95vh;
+  max-width: 140vh;
+  border: 2px solid gray;
+  border-radius: 10px;
+}
+
+.banner-container {
+  background-color: blue;
+  height:20vh;
+  max-width: 140vh;
+  padding:10px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.banner {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+  
+}
