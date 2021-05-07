@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Redirect, Route, Switch, useHistory, useLocation } from 'react-router-dom';
+import { Link, Redirect, Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import AuthPage from '../AuthPage/AuthPage';
 import NewItemPage from '../UserAdmin/NewItemPage/NewItemPage';
@@ -128,7 +128,7 @@ export default function App() {
 			{user ? (
 				<>
 					<NavBar user={user} setUser={setUser} cartItems={cartItems} isAdmin={isAdmin}/>
-					<div className="banner-container"><img className="banner" src={Banner} alt="Banner"/></div>
+					<div className="banner-container"><Link to='/'><img className="banner" src={Banner} alt="Banner"/></Link></div>
 					<Switch>
 						<Route path='/admin/new'>
 							<NewItemPage handleAddItem={handleAddItem} showCategories={showCategories} isAdmin={isAdmin}/>
