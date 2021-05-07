@@ -22,7 +22,7 @@ export default function LogIn({ setUser , setIsAdmin}) {
 			// payload of the JSON Web Token (JWT)
 			const user = await usersService.login(credentials);
 			setUser(user);
-			if(user.acctlvl===4) {
+			if(user.acctlvl===10) {
 				setIsAdmin(true)
 			} else { setIsAdmin(false)}
 		} catch {

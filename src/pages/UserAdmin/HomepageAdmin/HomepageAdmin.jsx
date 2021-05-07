@@ -1,12 +1,18 @@
 import React from "react";
 import * as usersService from "../../../utilities/users-service";
 import ItemTable from "../../../Components/ItemTable/ItemTable";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import plusIcon from "../../../pictures/plus.png";
 import AdminMenu from "../../../Components/AdminMenu/AdminMenu";
 import "./HomepageAdmin.css";
 
-export default function HomepageAdmin({ showItems, handleDelete }) {
+export default function HomepageAdmin({ showItems, handleDelete, isAdmin }) {
+  // const history = useHistory();
+  // console.log(isAdmin)
+  // if (!isAdmin){
+  //   history.push('/');
+  // }
+
   const items = showItems.map((item) => (
     <tr>
       <ItemTable item={item} handleDelete={handleDelete} />

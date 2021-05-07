@@ -5,13 +5,13 @@ const itemsCtrl = require('../../controllers/api/items');
 const ensureLoggedIn = require('../../config/ensureLoggedIn');
 
 // GET api.items
-router.get('/', itemsCtrl.index)
-router.get('/:id', itemsCtrl.show)
+router.get('/', ensureLoggedIn, itemsCtrl.index)
+router.get('/:id', ensureLoggedIn, itemsCtrl.show)
 
 // POST api.items
-router.post('/', itemsCtrl.create)
-router.delete('/:id', itemsCtrl.delete)
+router.post('/', ensureLoggedIn, itemsCtrl.create)
+router.delete('/:id', ensureLoggedIn, itemsCtrl.delete)
 
-router.put('/:id', itemsCtrl.update);
+router.put('/:id', ensureLoggedIn, itemsCtrl.update);
 
 module.exports = router;

@@ -7,7 +7,6 @@ import HomepageAdmin from '../UserAdmin/HomepageAdmin/HomepageAdmin';
 import ItemDetailsPage from '../ItemDetailsPage/ItemDetailsPage'
 import NavBar from '../../Components/NavBar/NavBar';
 import UpdateItemPage from '../UserAdmin/UpdateItemPage/UpdateItemPage';
-import RouteGuard from '../../Components/RouteGuard/RouteGuard'
 import CategoryPage from '../UserAdmin/CategoryPage/CategoryPage'
 import * as itemsAPI from '../../utilities/items-api'
 import * as categoriesAPI from '../../utilities/categories-api'
@@ -38,36 +37,47 @@ export default function App() {
 		} else {
 			history.push('/');
 		}
-	}, [showItems, history])
+	}, [showItems, history, user])
 	useEffect(() => {
 		async function getItems() {
-			const items = await itemsAPI.getAll();
-			setShowItems(items);
+			if(user) {
+				const items = await itemsAPI.getAll();
+				setShowItems(items);
+				const categories = await categoriesAPI.getAll();
+				setShowCategories(categories)
+				const carts = await cartsAPI.getAll(user._id);
+				setAllCarts(carts)
+				const cart = carts
+					.filter((e) => e.paid === false)
+					.map((e) => {return e.items})
+				setCartItems(cart)
+
+			}
 		}
 		getItems();
-	}, [])
-	useEffect(() => {
-		async function getCategories() {
-			const categories = await categoriesAPI.getAll();
-			setShowCategories(categories)
-		}
-		getCategories();
-	}, [])
-	useEffect(() => {
-		async function getCarts() {
-			// get all carts from user
-			const carts = await cartsAPI.getAll(user._id);
-			setAllCarts(carts)
-			const cart = carts
-				.filter((e) => e.paid === false)
-				.map((e) => {return e.items})
-			setCartItems(cart)
-			// setshowcart to all carts with paid false
-			// setpastorders to all carts with paid true
-			// setShowPaid(carts.filter((e) => e.paid === true));
-		}
-		getCarts()
-	}, [])
+	}, [user])
+	// useEffect(() => {
+	// 	async function getCategories() {
+	// 		const categories = await categoriesAPI.getAll();
+	// 		setShowCategories(categories)
+	// 	}
+	// 	getCategories();
+	// }, [])
+	// useEffect(() => {
+	// 	async function getCarts() {
+	// 		// get all carts from user
+	// 		const carts = await cartsAPI.getAll(user._id);
+	// 		setAllCarts(carts)
+	// 		const cart = carts
+	// 			.filter((e) => e.paid === false)
+	// 			.map((e) => {return e.items})
+	// 		setCartItems(cart)
+	// 		// setshowcart to all carts with paid false
+	// 		// setpastorders to all carts with paid true
+	// 		// setShowPaid(carts.filter((e) => e.paid === true));
+	// 	}
+	// 	getCarts()
+	// }, [])
 
 
 	useEffect(() => {
@@ -119,16 +129,16 @@ export default function App() {
 					<NavBar user={user} setUser={setUser} cartItems={cartItems}/>
 					<Switch>
 						<Route path='/admin/new'>
-							<NewItemPage handleAddItem={handleAddItem} showCategories={showCategories}/>
+							<NewItemPage handleAddItem={handleAddItem} showCategories={showCategories} isAdmin={isAdmin}/>
 						</Route>
 						<Route path='/admin/category'>
-							<CategoryPage showCategories={showCategories} handleDeleteCategory={handleDeleteCategory} handleAddCategory={handleAddCategory}/>
+							<CategoryPage showCategories={showCategories} handleDeleteCategory={handleDeleteCategory} handleAddCategory={handleAddCategory} isAdmin={isAdmin}/>
 						</Route>
 						<Route exact path='/admin/edit'>
-							<UpdateItemPage handleUpdate={handleUpdate} showCategories={showCategories}/>
+							<UpdateItemPage handleUpdate={handleUpdate} showCategories={showCategories} isAdmin={isAdmin}/>
 						</Route>
 						<Route path='/admin'>
-							<HomepageAdmin showItems={showItems} handleDelete={handleDelete}/>
+							<HomepageAdmin showItems={showItems} handleDelete={handleDelete} isAdmin={isAdmin}/>
 						</Route>
 						<Route exact path='/cart'>
 							<CartPage cartItems={cartItems} setCartItems={setCartItems} allCarts={allCarts}/>
