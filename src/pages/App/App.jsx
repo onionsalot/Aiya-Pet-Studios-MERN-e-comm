@@ -18,7 +18,7 @@ import ItemListPage from '../ItemListPage/ItemListPage';
 import CartPage from '../CartPage/CartPage';
 
 export default function App() {
-	const [isAdmin, setIsAdmin] = useState(false)
+	const [isAdmin, setIsAdmin] = useState()
 	const [user, setUser] = useState(getUser());
 	const [showItems, setShowItems] = useState([]);
 	const [showCategories, setShowCategories] = useState([]);
@@ -27,7 +27,7 @@ export default function App() {
 	const [cartItems, setCartItems] = useState([])
 	const history = useHistory();
 	const location = useLocation();
-
+	console.log('what is getUser()', getUser())
 	const currentUrl = String(location.pathname);
 
 	useEffect(() => {
@@ -52,7 +52,7 @@ export default function App() {
 					.filter((e) => e.paid === false)
 					.map((e) => {return e.items})
 				setCartItems(cart)
-
+				user.acctlvl === 10 ? setIsAdmin(true) : setIsAdmin(false)
 			}
 		}
 		getItems();

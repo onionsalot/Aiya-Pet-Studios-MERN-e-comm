@@ -3,7 +3,7 @@
     display: grid;
     grid-template-columns: 25% 75%;
     grid-template-rows: 1fr;
-    background-color: blue;
+    background-color: rgb(70, 70, 156);
     border-radius: 10px;
     margin: 10px;
 }
